@@ -9,7 +9,7 @@ import SingleDivision from "../components/singleDivision.tsx";
 const OperationsContainer = styled.div`
   display: flex;
   justify-content: center;
-  gap: 120px;
+  gap: 25px;
 `;
 const SingleMultiplicationStyled = styled(SingleMultiplication)`
   margin: 12px;
