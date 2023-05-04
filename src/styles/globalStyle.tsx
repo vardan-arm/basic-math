@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
     text-align: center;
 
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 18px;
     line-height: 1.5;
     font-weight: 400;
 
