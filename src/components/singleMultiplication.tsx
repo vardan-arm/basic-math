@@ -13,7 +13,7 @@ interface Args {
 const ContainerStyled = styled.div`
   display: flex;
   justify-content: flex-end;
-  gap: 16px;
+  gap: 12px;
 `;
 const ResponseFieldStyled = styled.input`
   width: 50px;
