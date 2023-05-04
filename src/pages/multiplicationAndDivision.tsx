@@ -17,8 +17,15 @@ const SingleMultiplicationStyled = styled(SingleMultiplication)`
 const SingleDivisionStyled = styled(SingleDivision)`
   margin: 12px;
 `;
+const ButtonStyled = styled.button`
+  margin-top: 24px;
+  padding: 8px 24px;
+  cursor: pointer;
+  font-weight: 600;
+`;
 
 const MultiplicationAndDivision = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [operandsCollection, setOperandsCollection] = useState<{ first: number, second: number }[]>([]);
 
   useEffect(() => {
@@ -38,21 +45,38 @@ const MultiplicationAndDivision = () => {
     setOperandsCollection(tempArr);
   }, []);
 
+  const handleSubmit = () => {
+    setIsSubmitted(true);
+  }
+
   return (
-    <OperationsContainer>
-      <div>
-        {operandsCollection.map(({first, second}, index) => (
-            <SingleMultiplicationStyled key={index} first={first} second={second} operation={Operation.Multiplication} />
-          )
-        )}
-      </div>
-      <div>
-        {operandsCollection.map(({first, second}, index) => (
-            <SingleDivisionStyled key={index} first={first} second={second} operation={Operation.Division} />
-          )
-        )}
-      </div>
-    </OperationsContainer>
+    <div>
+      <OperationsContainer>
+        <div>
+          {operandsCollection.map(({first, second}, index) => (
+              <SingleMultiplicationStyled key={index}
+                                          first={first}
+                                          second={second}
+                                          operation={Operation.Multiplication}
+                                          isSubmitted={isSubmitted}
+              />
+            )
+          )}
+        </div>
+        <div>
+          {operandsCollection.map(({first, second}, index) => (
+              <SingleDivisionStyled key={index}
+                                    first={first}
+                                    second={second}
+                                    operation={Operation.Division}
+                                    isSubmitted={isSubmitted}
+              />
+            )
+          )}
+        </div>
+      </OperationsContainer>
+      <ButtonStyled onClick={handleSubmit}>Check</ButtonStyled>
+    </div>
   );
 }
 

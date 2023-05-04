@@ -1,1 +1,1 @@
-export const AdditionAndDeductionExamplesCount = 10;
+export const AdditionAndDeductionExamplesCount = 15;
