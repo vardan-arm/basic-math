@@ -26,7 +26,8 @@ const ButtonStyled = styled.button`
 
 const MultiplicationAndDivision = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [operandsCollection, setOperandsCollection] = useState<{ first: number, second: number }[]>([]);
+  const [mulOperandsCollection, setMulOperandsCollection] = useState<{ first: number, second: number }[]>([]);
+  const [divOperandsCollection, setDivOperandsCollection] = useState<{ first: number, second: number }[]>([]);
 
   useEffect(() => {
     const tempArr: { first: number, second: number }[] = [];
@@ -42,7 +43,24 @@ const MultiplicationAndDivision = () => {
         tempArr.push({first: firstOperand, second: secondOperand})
       }
     }
-    setOperandsCollection(tempArr);
+
+    setMulOperandsCollection([...tempArr]);
+
+    tempArr.length = 0;
+
+    while (tempArr.length < AdditionAndDeductionExamplesCount) {
+      const {firstOperand, secondOperand} = generateSimpleMultiplicationOperands();
+      const isPairAlreadyAdded = tempArr.some(({
+                                                 first,
+                                                 second
+                                               }) => first === firstOperand && second === secondOperand);
+
+      if (!isPairAlreadyAdded) {
+        tempArr.push({first: firstOperand, second: secondOperand})
+      }
+    }
+
+    setDivOperandsCollection([...tempArr]);
   }, []);
 
   const handleSubmit = () => {
@@ -53,7 +71,7 @@ const MultiplicationAndDivision = () => {
     <div>
       <OperationsContainer>
         <div>
-          {operandsCollection.map(({first, second}, index) => (
+          {mulOperandsCollection.map(({first, second}, index) => (
               <SingleMultiplicationStyled key={index}
                                           first={first}
                                           second={second}
@@ -64,7 +82,7 @@ const MultiplicationAndDivision = () => {
           )}
         </div>
         <div>
-          {operandsCollection.map(({first, second}, index) => (
+          {divOperandsCollection.map(({first, second}, index) => (
               <SingleDivisionStyled key={index}
                                     first={first}
                                     second={second}
